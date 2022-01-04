@@ -3,7 +3,7 @@ require('dotenv').config();
 const app = express();
 const mysql = require('mysql');
 app.set('view engine', 'ejs');
-
+app.use(express.json());
 
 
 const connection = mysql.createConnection({
@@ -23,9 +23,9 @@ connection.connect((err) => {
 
 
 
-app.use(express.json());
 
-const PORT = process.env.PORT || 3000
+
+
 
 app.get('/', (req, res) => {
     res.render('form')
@@ -33,6 +33,21 @@ app.get('/', (req, res) => {
 
 
 
+
+
+app.post('/insert', (req, res) => {
+
+})
+
+
+
+
+
+
+
+
+
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`);
