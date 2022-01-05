@@ -59,6 +59,39 @@ app.get('/show', (req, res) => {
         })
     })
 
+});
+
+
+app.get('/delete/:id', (req, res) => {
+    const _id = req.params.id;
+    const sql = `delete from user where user_id=${_id}`;
+    connection.query(sql, (err, results) => {
+        if (err) throw err;
+        res.redirect('/show')
+    })
+});
+
+
+app.get('/edit/:id', (req, res) => {
+    const _id = req.params.id;
+    const sql = `select * from user where user_id=${_id}`;
+    connection.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('edit', {
+            users: results
+        })
+    })
+});
+
+
+app.post('/update/:id', (req, res) => {
+    const _id = req.params.id;
+    const { name, email, password } = req.body;
+    const sql = `update user set name='${name}', email='${email}', password='${password}' where user_id='${_id}'`;
+    connection.query(sql, (err, results) => {
+        if (err) throw err;
+        res.redirect('/show')
+    })
 })
 
 

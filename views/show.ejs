@@ -18,6 +18,8 @@
                 <th>name</th>
                 <th>email</th>
                 <th>password</th>
+                <th>user_delete</th>
+                <th>user_edit</th>
             </tr>
             <tr>
                 <% for(let usr of users){ %>
@@ -34,6 +36,9 @@
                     <td>
                         <%= usr.password %>
                     </td>
+                    <td><a href="/delete/<%= usr.user_id %>" class="btn btn-danger btn-sm">Delete</a></td>
+                    <td><a href="/edit/<%= usr.user_id %>" class="btn btn-success btn-sm">Edit</a></td>
+
 
             </tr>
             <% } %>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Get_The_Data_For_Edit</title>
+</head>
+
+<body>
+    <h1 style="text-align: center">Update The Data</h1>
+    <div class="container">
+        <% for(let usr of users){ %>
+            <form action="/update/<%= usr.user_id %>" method="post" autocomplete="off">
+                <div class="form-group">
+                    <label><b>User name:</b></label>
+                    <input type="text" name="name" class="form-control" value=" <%= usr.name %>">
+                </div>
+                <div class="form-group">
+                    <label><b>User email:</b></label>
+                    <input type="email" name="email" class="form-control" value=" <%= usr.email %>">
+                </div>
+                <div class="form-group">
+                    <label><b>User password:</b></label>
+                    <input type="password" name="password" class="form-control" value=" <%= usr.password %>">
+                </div>
+                <input type="submit" name="Update" value="Update" class="btn btn-success">
+            </form>
+            <% } %>
+    </div>
+</body>
+
+</html>
