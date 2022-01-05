@@ -1,9 +1,13 @@
 const express = require('express');
 require('dotenv').config();
 const app = express();
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
+
 const mysql = require('mysql');
 app.set('view engine', 'ejs');
-app.use(express.json());
+
 
 
 const connection = mysql.createConnection({
@@ -36,9 +40,26 @@ app.get('/', (req, res) => {
 
 
 app.post('/insert', (req, res) => {
+    const { name, email, password } = req.body;
 
+    const sql = `insert into user(name,email,password) values('${name}','${email}','${password}')`;
+    connection.query(sql, (err, results) => {
+        if (err) throw err;
+        res.send(`<h>data sent....</h1>`)
+    })
 })
 
+
+app.get('/show', (req, res) => {
+    const sql = `select * from user`;
+    connection.query(sql, (err, results) => {
+        if (err) throw err;
+        res.render('show', {
+            users: results
+        })
+    })
+
+})
 
 
 
